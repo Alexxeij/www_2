@@ -10,6 +10,7 @@
                 <th>Title</th>
                 <th>Body</th>
                 <th>Draft</th>
+                <th>Photopath</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ blogPost.title }}</td>
                 <td>{{ blogPost.body }}</td>
                 <td>{% if blogPost.draft %}Yes{% else %}No{% endif %}</td>
+                <td>{{ blogPost.photoPath }}</td>
                 <td>
                     <ul>
                         <li>

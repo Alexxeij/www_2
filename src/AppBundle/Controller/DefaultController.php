@@ -18,8 +18,9 @@ class DefaultController extends Controller
     {
 
         $news = $this->get('doctrine')->getRepository('AppBundle:BlogPost')->findAll();
-        //dump($news);
-        return ['news' => $news];
+        $category = $this->get('doctrine')->getRepository('AppBundle:Category')->findAll();
+        //dump($category);
+        return ['news' => $news, 'category' => $category];
     }
 
     /**
@@ -40,7 +41,47 @@ class DefaultController extends Controller
         $blog = $this
             ->get('doctrine')
             ->getRepository('AppBundle:BlogPost')
-            ->findBy(array('id'=>$id));
+            ->findBy(array('id' => $id));
         return ['blog' => $blog];
     }
+
+    /**
+     *
+     * @Route("/it", name="it_posts")
+     * @Template()
+     */
+    public function itAction()
+    {
+        $it_posts = $this->get('doctrine')->getRepository('AppBundle:BlogPost')->findBy(['category' => 1]);
+
+        //dump($it_posts);
+        return ['it_posts' => $it_posts];
+    }
+
+    /**
+     *
+     * @Route("/formula-one", name="formula_posts")
+     * @Template()
+     */
+    public function formulaOneAction()
+    {
+        $it_posts = $this->get('doctrine')->getRepository('AppBundle:BlogPost')->findBy(['category' => 3]);
+
+        //dump($it_posts);
+        return ['it_posts' => $it_posts];
+    }
+
+    /**
+     *
+     * @Route("/discovery", name="discovery_posts")
+     * @Template()
+     */
+    public function discoveryAction()
+    {
+        $it_posts = $this->get('doctrine')->getRepository('AppBundle:BlogPost')->findBy(['category' => 2]);
+
+        //dump($it_posts);
+        return ['it_posts' => $it_posts];
+    }
+
 }

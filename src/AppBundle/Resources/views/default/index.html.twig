@@ -1,10 +1,13 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body %}
+
     {% for new in news %}
+
         <h2>{{ new.title }}</h2><br>
+        <img src="{{ asset('bundles/app/image')}}{{ new.PhotoPath }}">
         <h4>{{ new.body }}</h4><br>
         <a href="{{ path('one_posts',{'id': new.id })}}"><button class="btn-success" type="button">Читать далее...</button></a>
-        <hr>
+
     {% endfor %}
 {% endblock %}

@@ -144,28 +144,5 @@ class BlogPost
     {
         return $this->draft;
     }
-
-    /**
-     * Set photoPath
-     *
-     * @param string $photoPath
-     *
-     * @return BlogPost
-     */
-    public function setPhotoPath($photoPath)
-    {
-        $this->photoPath = $photoPath;
-
-        return $this;
-    }
-
-    /**
-     * Get photoPath
-     *
-     * @return string
-     */
-    public function getPhotoPath()
-    {
-        return $this->photoPath;
-    }
 }
+

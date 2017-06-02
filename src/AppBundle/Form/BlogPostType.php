@@ -13,7 +13,7 @@ class BlogPostType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('body')->add('draft')->add('category');
+        $builder->add('title')->add('body')->add('draft')->add('photoPath')->add('category');
     }
     
     /**
