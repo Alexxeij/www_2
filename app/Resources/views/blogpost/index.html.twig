@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blogposts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Draft</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blogPost in blogPosts %}
+            <tr>
+                <td><a href="{{ path('admin_show', { 'id': blogPost.id }) }}">{{ blogPost.id }}</a></td>
+                <td>{{ blogPost.title }}</td>
+                <td>{{ blogPost.body }}</td>
+                <td>{% if blogPost.draft %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_show', { 'id': blogPost.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_edit', { 'id': blogPost.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_new') }}">Create a new blogPost</a>
+        </li>
+    </ul>
+{% endblock %}

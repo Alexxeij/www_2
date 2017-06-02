@@ -1,0 +1,8 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    {% for blog in blog %}
+        <h2>{{ blog.title }}</h2><br>
+        <h4>{{ blog.body }}</h4>
+    {% endfor %}
+{% endblock %}
