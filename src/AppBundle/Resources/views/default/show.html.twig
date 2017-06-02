@@ -5,4 +5,14 @@
         <h2>{{ blog.title }}</h2><br>
         <h4>{{ blog.body }}</h4>
     {% endfor %}
+    <hr class="alert-success">
+    {% for com in comments %}
+        <blockquote class="alert-success">{{ com.creatAt|date('d-m-Y') }}<p>{{ com.body }}</p></blockquote>
+    {% endfor %}
+    <h1>Comment creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
 {% endblock %}

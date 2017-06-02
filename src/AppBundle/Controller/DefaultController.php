@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Comment;
+use AppBundle\Form\CommentType;
 
 class DefaultController extends Controller
 {
@@ -36,13 +38,31 @@ class DefaultController extends Controller
      * @Route("/show/{id}", name="one_posts")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $comments = $em->getRepository('AppBundle:Comment')->findBy(array('id'=>$id));
+
         $blog = $this
             ->get('doctrine')
             ->getRepository('AppBundle:BlogPost')
             ->findBy(array('id' => $id));
-        return ['blog' => $blog];
+
+        $comment = new Comment();
+        $form = $this->createForm('AppBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirectToRoute('one_posts', array('id' => $comment->getId()));
+        }
+        dump($comments);
+        return ['blog' => $blog,'comment' => $comment,'comments'=>$comments,
+            'form' => $form->createView(),];
     }
 
     /**

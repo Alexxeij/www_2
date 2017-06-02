@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * BlogPost
@@ -40,7 +41,7 @@ class BlogPost
      *
      * @ORM\Column(name="draft", type="boolean")
      */
-    private $draft=false;
+    private $draft = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="blogPosts")
@@ -56,10 +57,11 @@ class BlogPost
     {
         return $this->category;
     }
+
     /**
      * @var string
      *
-     * @ORM\Column(name="photo_path", type="string", length=250, nullable=false, unique=true)
+     * @ORM\Column(name="photo_path", type="string", length=250, nullable=false)
      */
     private $photoPath;
 
