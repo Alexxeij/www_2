@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Comment
@@ -34,6 +35,11 @@ class Comment
      * @ORM\Column(name="creatAt", type="datetime")
      */
     private $creatAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\BlogPost")
+     */
+    private $post;
 
     /**
      * Get id
@@ -93,4 +99,27 @@ class Comment
         return $this->creatAt;
     }
 
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\BlogPost $post
+     *
+     * @return Comment
+     */
+    public function setPost(\AppBundle\Entity\BlogPost $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\BlogPost
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }

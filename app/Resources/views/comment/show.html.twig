@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <th>Creatat</th>
-                <td>{{ comment.creatAt|date('d-m-Y') }}</td>
+                <td>{% if comment.creatAt %}{{ comment.creatAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

@@ -42,7 +42,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $comments = $em->getRepository('AppBundle:Comment')->findBy(array('id'=>$id));
+        $comments = $em->getRepository('AppBundle:Comment')->findBy(array('post'=>$id));
 
         $blog = $this
             ->get('doctrine')

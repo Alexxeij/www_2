@@ -170,4 +170,38 @@ class BlogPost
     {
         return $this->photoPath;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return BlogPost
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comment[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
 }

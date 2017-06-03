@@ -2,14 +2,13 @@
 
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\DateType;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Component\Form\FormView;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CommentType extends AbstractType
 {
@@ -18,9 +17,11 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('body')->add('creatAt');
+        $builder->add('body',null,['required'=>false,'attr'=>['class'=>'form-control']])
+            ->add('creatAt',null)
+            ->add('post',EntityType::class,[ 'class' => 'AppBundle:BlogPost', 'choice_label' => 'id','required'=>false,'attr'=>['class'=>'form-control']]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
